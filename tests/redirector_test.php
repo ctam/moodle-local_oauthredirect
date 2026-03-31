@@ -14,11 +14,14 @@ class local_oauthredirect_redirector_testcase extends advanced_testcase {
     public function test_build_login_url_basic_params() {
         global $DB, $CFG;
         $this->resetAfterTest();
+        $now = time();
 
         // Insert a fake issuer to the DB so the helper finds it.
         $record = new stdClass();
         $record->name = 'test-issuer';
         $record->clientid = 'fake';
+        $record->timecreated = $now;
+        $record->timemodified = $now;
         $record->authorizationendpoint = '';
         $record->tokenendpoint = '';
         $record->userinfoendpoint = '';
@@ -40,10 +43,13 @@ class local_oauthredirect_redirector_testcase extends advanced_testcase {
     public function test_build_login_url_includes_sesskey_when_requested() {
         global $DB;
         $this->resetAfterTest();
+        $now = time();
 
         $record = new stdClass();
         $record->name = 'test-issuer-2';
         $record->clientid = 'fake2';
+        $record->timecreated = $now;
+        $record->timemodified = $now;
         $record->authorizationendpoint = '';
         $record->tokenendpoint = '';
         $record->userinfoendpoint = '';
