@@ -14,20 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace local_oauthredirect;
-
-defined('MOODLE_INTERNAL') || die();
-
 /**
- * Plugin version information.
+ * Version file for local_oauthredirect.
  *
  * @package    local_oauthredirect
  * @copyright  2026 OpenAI
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
+
 $plugin->component = 'local_oauthredirect';
-$plugin->version = 20260311_0001;
+$plugin->version = 2026031100;
 $plugin->requires = 2022112800;
 $plugin->maturity = MATURITY_STABLE;
 $plugin->release = 'v1.0';
