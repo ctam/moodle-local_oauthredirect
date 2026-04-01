@@ -12,11 +12,9 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 namespace local_oauthredirect;
-
-defined('MOODLE_INTERNAL') || die();
 
 /**
  * Builds OAuth redirect URLs.
@@ -31,12 +29,12 @@ class redirector {
      * Build the OAuth login URL.
      *
      * @param int $issuerid The OAuth issuer ID.
-     * @param bool $includeSesskey Whether to include sesskey in the URL.
+     * @param bool $includesesskey Whether to include sesskey in the URL.
      * @param string|null $wantsurl The wantsurl value, if any.
      * @return \moodle_url
      * @throws \moodle_exception If the issuer cannot be found.
      */
-    public static function build_login_url(int $issuerid, bool $includeSesskey = true, ?string $wantsurl = null): \moodle_url {
+    public static function build_login_url(int $issuerid, bool $includesesskey = true, ?string $wantsurl = null): \moodle_url {
         global $DB;
 
         if ($issuerid < 1) {
@@ -54,7 +52,7 @@ class redirector {
             $params['wantsurl'] = $wantsurl;
         }
 
-        if ($includeSesskey) {
+        if ($includesesskey) {
             $params['sesskey'] = sesskey();
         }
 

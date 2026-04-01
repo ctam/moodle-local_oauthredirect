@@ -12,41 +12,40 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
-require_once(__DIR__ . '/../../config.php');
+use local_oauthredirect\redirector;
 
 /**
- * Public redirect endpoint for OAuth login.
+ * Redirect endpoint for OAuth login.
  *
  * @package    local_oauthredirect
  * @copyright  2026 OpenAI
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// This endpoint is intentionally public, so the login-check sniff is disabled.
+// This endpoint is intentionally public.
 // phpcs:disable moodle.Files.RequireLogin.Missing
+require_once(__DIR__ . '/../../config.php');
+// phpcs:enable moodle.Files.RequireLogin.Missing
 
-defined('MOODLE_INTERNAL') || die();
+$defaultissuerid = (int) get_config('local_oauthredirect', 'issuerid');
+$includesesskey = (bool) get_config('local_oauthredirect', 'include_sesskey');
+$includewantsurl = (bool) get_config('local_oauthredirect', 'include_wantsurl');
 
-$defaultIssuerid = (int) get_config('local_oauthredirect', 'issuerid');
-$includeSesskey = (bool) get_config('local_oauthredirect', 'include_sesskey');
-$includeWantsurl = (bool) get_config('local_oauthredirect', 'include_wantsurl');
+$issuerid = optional_param('issuerid', $defaultissuerid, PARAM_INT);
 
-$issuerid = optional_param('issuerid', $defaultIssuerid, PARAM_INT);
 $wantsurl = null;
-if ($includeWantsurl) {
+if ($includewantsurl) {
     $wantsurl = optional_param('wantsurl', '/', PARAM_LOCALURL);
 }
-$omitSesskey = optional_param('omit_sesskey', 0, PARAM_BOOL);
 
-$useSesskey = $includeSesskey && !$omitSesskey;
-
-require_once(__DIR__ . '/classes/redirector.php');
+$omitsskey = optional_param('omit_sesskey', 0, PARAM_BOOL);
+$usesesskey = $includesesskey && !$omitsskey;
 
 try {
-    $target = \local_oauthredirect\redirector::build_login_url($issuerid, $useSesskey, $wantsurl);
-} catch (\moodle_exception $exception) {
+    $target = redirector::build_login_url($issuerid, $usesesskey, $wantsurl);
+} catch (moodle_exception $exception) {
     echo $OUTPUT->header();
     echo $OUTPUT->heading(get_string('pluginname', 'local_oauthredirect'));
     echo $OUTPUT->notification($exception->getMessage(), 'notifyproblem');
@@ -55,5 +54,3 @@ try {
 }
 
 redirect($target);
-
-// phpcs:enable moodle.Files.RequireLogin.Missing

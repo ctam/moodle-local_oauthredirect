@@ -12,9 +12,7 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-defined('MOODLE_INTERNAL') || die();
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Capability definitions.
@@ -23,6 +21,8 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2026 OpenAI
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+defined('MOODLE_INTERNAL') || die();
 
 $capabilities = [
     'local/oauthredirect:manage' => [

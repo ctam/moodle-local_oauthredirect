@@ -12,9 +12,7 @@
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
-// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
-defined('MOODLE_INTERNAL') || die();
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
 /**
  * Admin settings for local_oauthredirect.
@@ -24,6 +22,8 @@ defined('MOODLE_INTERNAL') || die();
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
+
 if ($hassiteconfig) {
     $settings = new admin_settingpage('local_oauthredirect', get_string('pluginname', 'local_oauthredirect'));
 
@@ -32,7 +32,7 @@ if ($hassiteconfig) {
 
     try {
         $settingoptions = (array) $DB->get_records_menu('oauth2_issuer', null, 'id ASC', 'id, name');
-    } catch (\Exception $exception) {
+    } catch (Exception $exception) {
         $settingoptions = [];
     }
 
