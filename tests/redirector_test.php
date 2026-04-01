@@ -43,24 +43,36 @@ class redirector_test extends \advanced_testcase {
     }
 
     /**
+     * Create a minimal OAuth issuer record for tests.
+     *
+     * @param string $name Issuer name.
+     * @param string $clientid Client ID.
+     * @return int The inserted issuer id.
+     */
+    protected function create_test_issuer(string $name, string $clientid): int {
+        global $DB;
+
+        $now = time();
+
+        $record = new \stdClass();
+        $record->name = $name;
+        $record->clientid = $clientid;
+        $record->timecreated = $now;
+        $record->timemodified = $now;
+        $record->usermodified = 0;
+
+        return (int) $DB->insert_record('oauth2_issuer', $record);
+    }
+
+    /**
      * Test that the basic URL includes id and wantsurl.
      *
      * @return void
      */
     public function test_build_login_url_basic_params() {
-        global $DB;
-
         $this->resetAfterTest();
 
-        $now = time();
-
-        $record = new \stdClass();
-        $record->name = 'test-issuer';
-        $record->clientid = 'fake';
-        $record->timecreated = $now;
-        $record->timemodified = $now;
-
-        $id = $DB->insert_record('oauth2_issuer', $record);
+        $id = $this->create_test_issuer('test-issuer', 'fake');
 
         $url = redirector::build_login_url($id, false, '/path');
         $params = $url->params();
@@ -78,19 +90,9 @@ class redirector_test extends \advanced_testcase {
      * @return void
      */
     public function test_build_login_url_includes_sesskey_when_requested() {
-        global $DB;
-
         $this->resetAfterTest();
 
-        $now = time();
-
-        $record = new \stdClass();
-        $record->name = 'test-issuer-2';
-        $record->clientid = 'fake2';
-        $record->timecreated = $now;
-        $record->timemodified = $now;
-
-        $id = $DB->insert_record('oauth2_issuer', $record);
+        $id = $this->create_test_issuer('test-issuer-2', 'fake2');
 
         $this->setUser($this->getDataGenerator()->create_user());
 
