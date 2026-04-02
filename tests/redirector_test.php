@@ -30,13 +30,13 @@ require_once($CFG->dirroot . '/local/oauthredirect/classes/redirector.php');
  * @copyright  2026 The Regents of the University of California
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class redirector_test extends \advanced_testcase {
+final class redirector_test extends \advanced_testcase {
     /**
      * Test that a zero issuer id throws an exception.
      *
      * @return void
      */
-    public function test_build_login_url_throws_on_zero_issuer() {
+    public function test_build_login_url_throws_on_zero_issuer(): void {
         $this->expectException('moodle_exception');
 
         redirector::build_login_url(0, false, null);
@@ -60,7 +60,7 @@ class redirector_test extends \advanced_testcase {
      *
      * @return void
      */
-    public function test_build_login_url_basic_params() {
+    public function test_build_login_url_basic_params(): void {
         $this->resetAfterTest();
 
         $id = $this->create_test_issuer();
@@ -80,7 +80,7 @@ class redirector_test extends \advanced_testcase {
      *
      * @return void
      */
-    public function test_build_login_url_includes_sesskey_when_requested() {
+    public function test_build_login_url_includes_sesskey_when_requested(): void {
         $this->resetAfterTest();
 
         $id = $this->create_test_issuer();

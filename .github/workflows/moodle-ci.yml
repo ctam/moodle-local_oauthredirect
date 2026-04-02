@@ -33,6 +33,9 @@ jobs:
         php: ['8.2', '8.3', '8.4']
         moodle-branch: ['MOODLE_405_STABLE', 'MOODLE_501_STABLE']
         database: [pgsql, mariadb]
+        exclude:
+          - php: '8.4'
+            moodle-branch: 'MOODLE_405_STABLE'
 
     steps:
       - name: Check out repository code

@@ -25,13 +25,13 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'OAuth Redirect';
-$string['issuerid'] = 'Default OAuth issuer';
-$string['issuerid_desc'] = 'Select the OAuth issuer to which the redirect should point by default.';
 $string['include_sesskey'] = 'Include sesskey';
 $string['include_sesskey_desc'] = 'If enabled, the current session sesskey will be appended to the OAuth redirect URL.';
 $string['include_wantsurl'] = 'Include wantsurl';
 $string['include_wantsurl_desc'] = 'If enabled, wantsurl will be added to the redirect from ?wantsurl= or a default value.';
-$string['missingissuer'] = 'Missing OAuth issuer id.';
 $string['invalidissuer'] = 'OAuth issuer with id {$a} not found.';
+$string['issuerid'] = 'Default OAuth issuer';
+$string['issuerid_desc'] = 'Select the OAuth issuer to which the redirect should point by default.';
+$string['missingissuer'] = 'Missing OAuth issuer id.';
 $string['none'] = 'None';
+$string['pluginname'] = 'OAuth Redirect';
