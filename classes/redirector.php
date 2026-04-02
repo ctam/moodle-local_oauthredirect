@@ -24,7 +24,6 @@ namespace local_oauthredirect;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class redirector {
-
     /**
      * Build the OAuth login URL.
      *

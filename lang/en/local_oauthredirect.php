@@ -14,8 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Language strings for local_oauthredirect.
  *
@@ -23,6 +21,8 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2026 OpenAI
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
+defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'OAuth Redirect';
 $string['issuerid'] = 'Default OAuth issuer';

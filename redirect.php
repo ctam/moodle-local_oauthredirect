@@ -14,8 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
 
-use local_oauthredirect\redirector;
-
 /**
  * Redirect endpoint for OAuth login.
  *
@@ -24,10 +22,9 @@ use local_oauthredirect\redirector;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-// This endpoint is intentionally public.
-// phpcs:disable moodle.Files.RequireLogin.Missing
 require_once(__DIR__ . '/../../config.php');
-// phpcs:enable moodle.Files.RequireLogin.Missing
+
+defined('MOODLE_INTERNAL') || die();
 
 $defaultissuerid = (int) get_config('local_oauthredirect', 'issuerid');
 $includesesskey = (bool) get_config('local_oauthredirect', 'include_sesskey');
@@ -44,8 +41,8 @@ $omitsskey = optional_param('omit_sesskey', 0, PARAM_BOOL);
 $usesesskey = $includesesskey && !$omitsskey;
 
 try {
-    $target = redirector::build_login_url($issuerid, $usesesskey, $wantsurl);
-} catch (moodle_exception $exception) {
+    $target = \local_oauthredirect\redirector::build_login_url($issuerid, $usesesskey, $wantsurl);
+} catch (\moodle_exception $exception) {
     echo $OUTPUT->header();
     echo $OUTPUT->heading(get_string('pluginname', 'local_oauthredirect'));
     echo $OUTPUT->notification($exception->getMessage(), 'notifyproblem');

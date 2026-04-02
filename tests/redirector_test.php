@@ -30,7 +30,6 @@ require_once($CFG->dirroot . '/local/oauthredirect/classes/redirector.php');
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class redirector_test extends \advanced_testcase {
-
     /**
      * Test that a zero issuer id throws an exception.
      *
@@ -57,6 +56,7 @@ class redirector_test extends \advanced_testcase {
         $record = new \stdClass();
         $record->name = $name;
         $record->clientid = $clientid;
+        $record->image = 'https://example.test/image.png';
         $record->timecreated = $now;
         $record->timemodified = $now;
         $record->usermodified = 0;
