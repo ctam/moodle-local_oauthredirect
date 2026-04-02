@@ -26,7 +26,8 @@ require_once($CFG->dirroot . '/local/oauthredirect/classes/redirector.php');
  *
  * @covers \local_oauthredirect\redirector
  * @package    local_oauthredirect
- * @copyright  2026 OpenAI
+ * @author     Carson Tam
+ * @copyright  2026 The Regents of the University of California
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class redirector_test extends \advanced_testcase {

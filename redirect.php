@@ -18,7 +18,8 @@
  * Redirect endpoint for OAuth login.
  *
  * @package    local_oauthredirect
- * @copyright  2026 OpenAI
+ * @author     Carson Tam
+ * @copyright  2026 The Regents of the University of California
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
