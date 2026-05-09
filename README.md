@@ -17,7 +17,7 @@ Many administrators want Moodle's login to automatically redirect to an external
 ## Usage
 
 - To use the plugin as a redirect target in your web server (recommended):
-  - Point your HTTP server redirect for the login page to:
+  - Point your HTTP server redirect for the login page (`alternateloginurl`) to:
     - `https://yourmoodle.example.com/local/oauthredirect/redirect.php`
   - That endpoint will read the admin-configured `issuerid`, include `sesskey()` (if enabled) and optional `wantsurl`, then redirect the client to the real OAuth entrypoint `/auth/oauth2/login.php`.
 
